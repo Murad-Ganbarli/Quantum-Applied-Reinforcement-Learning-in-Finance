@@ -13,7 +13,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from matplotlib import colors as mcolors
-from matplotlib.collections import LineCollection,PolyCollection
+from matplotlib.collections import LineCollection, PolyCollection
 
 
 
@@ -23,18 +23,18 @@ def draw_origin(product):
     df = data.loc[:,['trade_date','OPEN','HIGH','LOW','CLOSE','VOLUME']]
 
 
-    date_tickers=df.trade_date.values
+    date_tickers = df.trade_date.values
     matix = df.values
     xdates = matix[:, 0]
 
 
     plt.rc('font', family='Microsoft YaHei')
-    plt.rc('figure', fc='k')
-    plt.rc('text', c='#f00000')
-    plt.rc('axes', axisbelow=True, xmargin=0, fc='k', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
-    plt.rc('xtick', c='#f43221')
-    plt.rc('ytick', c='#f43221')
-    plt.rc('grid', c='#f00000',  ls=':', lw=0.9)
+    plt.rc('figure', fc='w')  # white background
+    plt.rc('text', c='k')  # black text
+    plt.rc('axes', axisbelow=True, xmargin=0, fc='w', ec='k', lw=2, labelcolor='k', unicode_minus=False)  # black axes
+    plt.rc('xtick', c='k')  # black xticks
+    plt.rc('ytick', c='k')  # black yticks
+    plt.rc('grid', c='k', ls=':', lw=0.9)  # black grid
     plt.rc('lines', lw=0.9)
 
     fig = plt.figure(figsize=(16, 10), dpi=200)
@@ -55,8 +55,8 @@ def draw_origin(product):
     avg_dist_between_points = (xdates[-1] - xdates[0]) / float(len(xdates))
     delta = avg_dist_between_points / 4.0
     barVerts = [((date - delta, open), (date - delta, close), (date + delta, close), (date + delta, open)) for date, open, close in zip(xdates, opens, closes) ]
-    rangeSegLow   = [ ((date, low), (date, min(open, close))) for date, low, open, close in zip(xdates, lows, opens, closes) ]
-    rangeSegHigh  = [ ((date, high), (date, max(open, close))) for date, high, open, close in zip(xdates, highs, opens, closes) ]
+    rangeSegLow = [ ((date, low), (date, min(open, close))) for date, low, open, close in zip(xdates, lows, opens, closes) ]
+    rangeSegHigh = [ ((date, high), (date, max(open, close))) for date, high, open, close in zip(xdates, highs, opens, closes) ]
     rangeSegments = rangeSegLow + rangeSegHigh
     cmap = {True: mcolors.to_rgba('#DC143C', 1.0), False: mcolors.to_rgba('#DC143C', 1.0)}
     inner_colors = [ cmap[opn < cls] for opn, cls in zip(opens, closes) ]
@@ -68,7 +68,7 @@ def draw_origin(product):
     ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL+'].iloc[::-1], label='QPL+', color='#FF00FF')
     ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL-'].iloc[::-1], label='QPL-', color='#00FFFF')
 
-    mav_colors = ['#d4ff07','#ffffff']
+    mav_colors = ['#d4ff07', '#ffffff']
     mav_period = [5, 21]
     n = len(df)
     for i in range(len(mav_period)):
@@ -79,7 +79,7 @@ def draw_origin(product):
     ax1.grid(True)
     ax1.legend(loc='upper right')
     ax1.xaxis_date()
-    ax1.set_ylabel('Price',color='#f43221')
+    ax1.set_ylabel('Price', color='#f43221')
 
 
     barVerts = [((date - delta, 0), (date - delta, vol), (date + delta, vol), (date + delta, 0)) for date, vol in zip(xdates, matix[:,5]) ] # 生成K线实体(矩形)的4个顶点坐标
@@ -93,17 +93,17 @@ def draw_origin(product):
     ax2.yaxis.set_ticks_position('left')
     ax2.legend(loc='upper right')
     ax2.grid(True)
-    ax2.set_ylabel('Volume',color='#f43221')
+    ax2.set_ylabel('Volume', color='#f43221')
 
-    ax3.plot(pd.read_csv('Data/AUDUSD/source.csv')['RSI'].tolist(),label='RSI',linewidth=1.5)
+    ax3.plot(pd.read_csv('Data/AUDUSD/source.csv')['RSI'].tolist(), label='RSI', linewidth=1.5, color='#00FF00')
     ax3.yaxis.set_ticks_position('left')
     ax3.legend(loc='lower right')
     ax3.grid(True)
     ax3.set_ylim([0,100])
-    ax3.set_ylabel('RSI',color='#f43221')
-    ax3.set_xlabel('Trade Days',color='#f43221')
+    ax3.set_ylabel('RSI', color='#f43221')
+    ax3.set_xlabel('Trade Days', color='#f43221')
 
-    plt.savefig('Results/graph/Kline_origin/'+product+'_KLine.png',dpi=400)
+    plt.savefig('Results/graph/Kline_origin/'+product+'_KLine.png', dpi=400)
     # plt.show()
 
 products = ['AUDUSD','AIRBUS','GOOGLE','USD100M1','XAUUSD']
