@@ -65,10 +65,10 @@ def draw_origin(product):
     ax1.add_collection(LineCollection(rangeSegments, colors=updown_colors, linewidths=0.7, antialiaseds=False))
     ax1.add_collection(PolyCollection(barVerts, facecolors=inner_colors, edgecolors=updown_colors, antialiaseds=False, linewidths=0.1))
 
-    ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL+'].iloc[::-1], label='QPL+', color='#FF00FF')
-    ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL-'].iloc[::-1], label='QPL-', color='#00FFFF')
+    ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL+'].iloc[::-1], label='QPL+', color='#FFA500')
+    ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL-'].iloc[::-1], label='QPL-', color='#ADD8E6')
 
-    mav_colors = ['#d4ff07', '#ffffff']
+    mav_colors = ['#FFFF00', '#000000']
     mav_period = [5, 21]
     n = len(df)
     for i in range(len(mav_period)):
@@ -79,7 +79,7 @@ def draw_origin(product):
     ax1.grid(True)
     ax1.legend(loc='upper right')
     ax1.xaxis_date()
-    ax1.set_ylabel('Price', color='#f43221')
+    ax1.set_ylabel('Price', color='#FF4500')
 
 
     barVerts = [((date - delta, 0), (date - delta, vol), (date + delta, vol), (date + delta, 0)) for date, vol in zip(xdates, matix[:,5]) ] # 生成K线实体(矩形)的4个顶点坐标
@@ -93,15 +93,15 @@ def draw_origin(product):
     ax2.yaxis.set_ticks_position('left')
     ax2.legend(loc='upper right')
     ax2.grid(True)
-    ax2.set_ylabel('Volume', color='#f43221')
+    ax2.set_ylabel('Volume', color='#FF4500')
 
     ax3.plot(pd.read_csv('Data/AUDUSD/source.csv')['RSI'].tolist(), label='RSI', linewidth=1.5, color='#00FF00')
     ax3.yaxis.set_ticks_position('left')
     ax3.legend(loc='lower right')
     ax3.grid(True)
     ax3.set_ylim([0,100])
-    ax3.set_ylabel('RSI', color='#f43221')
-    ax3.set_xlabel('Trade Days', color='#f43221')
+    ax3.set_ylabel('RSI', color='#FF4500')
+    ax3.set_xlabel('Trade Days', color='#FF4500')
 
     plt.savefig('Results/graph/Kline_origin/'+product+'_KLine.png', dpi=400)
     # plt.show()
