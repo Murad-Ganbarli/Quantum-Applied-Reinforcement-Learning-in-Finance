@@ -28,9 +28,9 @@ def draw_transaction(product):
     matix = df.values
     xdates = matix[:, 0]
 
-    plt.rc('figure', fc='k')
+    plt.rc('figure', fc='w')
     plt.rc('text', c='#f00000')
-    plt.rc('axes', axisbelow=True, xmargin=0, fc='k', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
+    plt.rc('axes', axisbelow=True, xmargin=0, fc='w', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
     plt.rc('xtick', c='#f43221')
     plt.rc('ytick', c='#f43221')
     plt.rc('grid', c='#f00000',  ls=':', lw=0.9)
@@ -54,7 +54,7 @@ def draw_transaction(product):
                     (days - 0.04, data['LOW'].min()),
                     0.8,
                     data['HIGH'].max() - data['LOW'].min(),
-                    color='Orange',
+                    color='#FFA500',
                     alpha=1
                 )
             )
@@ -64,7 +64,7 @@ def draw_transaction(product):
                     (days - 0.04, data['LOW'].min()),
                     0.8,  # width长
                     data['HIGH'].max() - data['LOW'].min(),
-                    color='Green',
+                    color='#008000',
                     alpha=1
                 )
             )
@@ -103,7 +103,7 @@ def draw_transaction(product):
     ax1.grid(True)
     ax1.legend(loc='upper right')
     ax1.xaxis_date()
-    ax1.set_ylabel('Price',color='#f43221')
+    ax1.set_ylabel('Price',color='#FF4500')
 
 
     barVerts = [((date - delta, 0), (date - delta, vol), (date + delta, vol), (date + delta, 0)) for date, vol in zip(xdates, matix[:,5]) ] # 生成K线实体(矩形)的4个顶点坐标
@@ -117,15 +117,15 @@ def draw_transaction(product):
     ax2.yaxis.set_ticks_position('left')
     ax2.legend(loc='upper right')
     ax2.grid(True)
-    ax2.set_ylabel('Volume',color='#f43221')
+    ax2.set_ylabel('Volume',color='#FF4500')
 
     ax3.plot(pd.read_csv('Data/AUDUSD/source.csv')['RSI'].tolist(),label='RSI',linewidth=1.5)
     ax3.yaxis.set_ticks_position('left')
     ax3.legend(loc='lower right')
     ax3.grid(True)
     ax3.set_ylim([0,100])
-    ax3.set_ylabel('RSI',color='#f43221')
-    ax3.set_xlabel('Trade Days',color='#f43221')
+    ax3.set_ylabel('RSI',color='#FF4500')
+    ax3.set_xlabel('Trade Days',color='#FF4500')
 
     plt.savefig('Results/graph/Kline_transaction/'+product+'_KLine.png',dpi=400)
     # plt.show()
