@@ -28,9 +28,9 @@ def draw_transaction(product):
     matix = df.values
     xdates = matix[:, 0]
 
-    plt.rc('figure', fc='g')
+    plt.rc('figure', fc='w')
     plt.rc('text', c='#f00000')
-    plt.rc('axes', axisbelow=True, xmargin=0, fc='g', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
+    plt.rc('axes', axisbelow=True, xmargin=0, fc='w', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
     plt.rc('xtick', c='#f43221')
     plt.rc('ytick', c='#f43221')
     plt.rc('grid', c='#f00000',  ls=':', lw=0.9)
