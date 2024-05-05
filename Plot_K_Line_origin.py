@@ -31,7 +31,7 @@ def draw_origin(product):
     plt.rc('font', family='Microsoft YaHei')
     plt.rc('figure', fc='w')  # white background
     plt.rc('text', c='k')  # black text
-    plt.rc('axes', axisbelow=True, xmargin=0, fc='w', ec='k', lw=2, labelcolor='k', unicode_minus=False)  # black axes
+    plt.rc('axes', axisbelow=True, xmargin=0, fc='g', ec='k', lw=2, labelcolor='k', unicode_minus=False)  # black axes
     plt.rc('xtick', c='k')  # black xticks
     plt.rc('ytick', c='k')  # black yticks
     plt.rc('grid', c='k', ls=':', lw=0.9)  # black grid
@@ -89,7 +89,7 @@ def draw_origin(product):
         ax2.plot(xdates, vol5, c='y', label='VOL5')
     if n>=21:
         vol10 = df['VOLUME'].rolling(21).mean().values
-        ax2.plot(xdates, vol10, c='w', label='VOL21')
+        ax2.plot(xdates, vol10, c='g', label='VOL21')
     ax2.yaxis.set_ticks_position('left')
     ax2.legend(loc='upper right')
     ax2.grid(True)
