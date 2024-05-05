@@ -1,13 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""
-@author: Qiu Yaowen
-@file: Financial_Tools.py
-@function: To calculate the max draw down rate and sharpe ratio of the model
-@time: 2021/5/16 21:01
-"""
-
 import numpy as np
 
 def MaxDrawdown(balance):

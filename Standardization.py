@@ -1,29 +1,22 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""
-@author: Qiu Yaowen
-@file: Standardization.py
-@function: Perform necessary preprocessing on input data
-@time: 2021/5/14 20:21
-"""
-
 import pandas as pd
 
-
 class Preprocessor():
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, input_data):
+        self.input_data = input_data
 
-    def Add_pct_change(self):
-        self.data['PCT_CHANGE'] = pd.Series(self.data['CLOSE']).pct_change() # get gaily change of price
-        self.data = self.data.fillna(0) #the first row of pct_change will be zero
+    def add_pct_change(self):
+        # Calculate daily percentage change in closing price
+        self.input_data['DAILY_PCT_CHANGE'] = pd.Series(self.input_data['CLOSE']).pct_change()
+        # Fill NaN values (first row of pct_change) with zero
+        self.input_data = self.input_data.fillna(0)
 
-    def Standardization(self):
-        # the scale of volume is too big
-        self.data['VOLUME'] = (self.data['VOLUME']-self.data['VOLUME'].min())/(self.data['VOLUME'].max()-self.data['VOLUME'].min())
+    def standardization(self):
+        # Standardize volume data due to its large scale
+        self.input_data['VOLUME'] = (self.input_data['VOLUME'] - self.input_data['VOLUME'].min()) / (self.input_data['VOLUME'].max() - self.input_data['VOLUME'].min())
 
-    def Get_preprocessed_data(self):
-        self.Add_pct_change()
-        self.Standardization()
-        return self.data
+    def get_preprocessed_data(self):
+        # Apply preprocessing methods to the data
+        self.add_pct_change()
+        self.standardization()
+        # Return preprocessed data
+        return self.input_data

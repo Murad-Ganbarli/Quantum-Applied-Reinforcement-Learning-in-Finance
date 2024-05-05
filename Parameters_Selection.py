@@ -1,16 +1,6 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""
-@author: Qiu Yaowen
-@file: Parameters_Selection.py
-@function: Select the best combination of hyper-parameters for each financial product.
-           The criteria is the average profit of last 10 training (epoch 247 - epoch 256)
-@time: 2021/5/15 00:08
-"""
-from Environment import Environment
-from Agent import Agent
-from Standardization import Preprocessor
+from environment import Environment
+from agent import Agent
+from standardization import Preprocessor
 import pandas as pd
 import numpy as np
 import os
@@ -46,7 +36,7 @@ base = ['OPEN','CLOSE','HIGH','LOW','VOLUME','QPL','QPL+','QPL-','MA5','MA21','R
 for product in Products:
     print("-------Training Model for %s --------" % product)
     data = pd.read_csv('Data/' + product + '/Source.csv')[base].iloc[::-1]
-    data = Preprocessor(data).Get_preprocessed_data()
+    data = Preprocessor(data).get_preprocessed_data()
     # print(data)
     INPUT_DIMS = [len(data.columns) + 3]
 

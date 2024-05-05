@@ -1,19 +1,11 @@
-"""
-@author: Qiu Yaowen
-@file: Main.py
-@function: Main function to run
-@time: 2021/5/14 20:21
-"""
-
-from Environment import Environment
-from Agent import Agent
-from Standardization import Preprocessor
+from environment import Environment
+from agent import Agent
+from standardization import Preprocessor
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
 import shutil
-from Plot_K_Line_transaction import draw_transaction
-from Financial_Tools import MaxDrawdown, SharpeRatio
+from plot_kline_transaction import draw_transaction
 import seaborn as sns
 sns.set_style("white")
 
@@ -61,7 +53,7 @@ if __name__ == '__main__':
             if_forex = False
         print("-------Training Model for %s --------" %product)
         data = pd.read_csv('Data/'+product+'/source.csv')[base].iloc[::-1].reset_index().iloc[:,1::]
-        data = Preprocessor(data).Get_preprocessed_data()
+        data = Preprocessor(data).get_preprocessed_data()
         # print(data)
         INPUT_DIMS = [len(data.columns) + 3]
 
@@ -114,8 +106,6 @@ if __name__ == '__main__':
         g.write("The Accumulative Return Rate is the last trade day is %.2f" % (100* ((best_balances[-1] - 1e7) / 1e7)) + '% \n')
         g.write("The Maximum Return Rate is  is %.2f" % (100 * ((max(best_balances) - 1e7) / 1e7)) + '% \n')
         g.write("The Minimum Return Rate is  is %.2f" % (100 * ((min(best_balances) - 1e7) / 1e7)) + '% \n')
-        # g.write("The Max Draw Down rate for %s is %.2f " %(product, 100*MaxDrawdown(best_balances)) + '% \n')
-        # g.write("The Sharpe Ratio is %.2f " % (100*SharpeRatio(best_balances)) + '% \n')
         g.write('\n')
 
         #Plot each Transaction on the Kline

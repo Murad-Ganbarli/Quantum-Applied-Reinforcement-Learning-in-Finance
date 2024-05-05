@@ -1,10 +1,3 @@
-"""
-@author: Qiu Yaowen
-@file: Environment.py
-@function: Create Class for Transaction Environment
-@time: 2021/5/14 20:21
-"""
-
 import math
 import numpy as np
 
