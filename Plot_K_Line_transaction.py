@@ -28,9 +28,9 @@ def draw_transaction(product):
     matix = df.values
     xdates = matix[:, 0]
 
-    plt.rc('figure', fc='w')
+    plt.rc('figure', fc='g')
     plt.rc('text', c='#f00000')
-    plt.rc('axes', axisbelow=True, xmargin=0, fc='w', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
+    plt.rc('axes', axisbelow=True, xmargin=0, fc='g', ec='#800000', lw=2, labelcolor='#800000', unicode_minus=False)
     plt.rc('xtick', c='#f43221')
     plt.rc('ytick', c='#f43221')
     plt.rc('grid', c='#f00000',  ls=':', lw=0.9)
@@ -92,7 +92,7 @@ def draw_transaction(product):
     ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL+'].iloc[::-1], label='QPL+', color='#FF00FF')
     ax1.plot(xdates, pd.read_csv('Data/'+product+'/source.csv')['QPL-'].iloc[::-1], label='QPL-', color='#00FFFF')
 
-    mav_colors = ['#d4ff07','#ffffff']
+    mav_colors = ['#d4ff07','#33ff81']
     mav_period = [5, 21]
     n = len(df)
     for i in range(len(mav_period)):
@@ -113,7 +113,7 @@ def draw_transaction(product):
         ax2.plot(xdates, vol5, c='y', label='VOL5')
     if n>=21:
         vol10 = df['VOLUME'].rolling(21).mean().values
-        ax2.plot(xdates, vol10, c='w', label='VOL21')
+        ax2.plot(xdates, vol10, c='g', label='VOL21')
     ax2.yaxis.set_ticks_position('left')
     ax2.legend(loc='upper right')
     ax2.grid(True)
