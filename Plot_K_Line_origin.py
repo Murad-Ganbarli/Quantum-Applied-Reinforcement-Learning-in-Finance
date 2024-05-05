@@ -1,35 +1,20 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
-"""
-@author: Qiu Yaowen
-@file: Plot_K_Line_origin.py
-@function: Plot K line for each financial product
-@time: 2021/5/14 22:55
-"""
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from matplotlib import colors as mcolors
 from matplotlib.collections import LineCollection, PolyCollection
 
-
-
 def draw_origin(product):
     data = pd.read_csv('Data/'+product+'/source.csv').iloc[:,0:5].iloc[::-1]
     data['trade_date'] = range(0, len(data))
     df = data.loc[:,['trade_date','OPEN','HIGH','LOW','CLOSE','VOLUME']]
 
-
     date_tickers = df.trade_date.values
     matix = df.values
     xdates = matix[:, 0]
 
-
     plt.rc('font', family='Microsoft YaHei')
-    plt.rc('figure', fc='w')  # white background
+    plt.rc('figure', facecolor='white', figsize=(16, 10), dpi=200)  # white background and figure size
     plt.rc('text', c='k')  # black text
     plt.rc('axes', axisbelow=True, xmargin=0, fc='g', ec='k', lw=2, labelcolor='k', unicode_minus=False)  # black axes
     plt.rc('xtick', c='k')  # black xticks
@@ -37,14 +22,13 @@ def draw_origin(product):
     plt.rc('grid', c='k', ls=':', lw=0.9)  # black grid
     plt.rc('lines', lw=0.9)
 
-    fig = plt.figure(figsize=(16, 10), dpi=200)
+    fig = plt.figure()
     left, width = 0.06, 0.9
     ax1 = fig.add_axes([left, 0.5, width, 0.35])
     ax2 = fig.add_axes([left, 0.34, width, 0.15], sharex=ax1)
     ax3 = fig.add_axes([left, 0.13, width, 0.2], sharex=ax1)
     plt.setp(ax1.get_xticklabels(), visible=False)
     plt.setp(ax2.get_xticklabels(), visible=False)
-
 
     def format_date(x, pos=None):
         return '' if x<0 or x>len(date_tickers)-1 else date_tickers[int(x)]
@@ -81,7 +65,6 @@ def draw_origin(product):
     ax1.xaxis_date()
     ax1.set_ylabel('Price', color='#FF4500')
 
-
     barVerts = [((date - delta, 0), (date - delta, vol), (date + delta, vol), (date + delta, 0)) for date, vol in zip(xdates, matix[:,5]) ] # 生成K线实体(矩形)的4个顶点坐标
     ax2.add_collection(PolyCollection(barVerts, facecolors=inner_colors, edgecolors=updown_colors, antialiaseds=False, linewidths=0.1)) # 生成多边形(矩形)顶点数据(背景填充色，边框色，反锯齿，线宽)
     if n>=5:
@@ -104,7 +87,6 @@ def draw_origin(product):
     ax3.set_xlabel('Trade Days', color='#FF4500')
 
     plt.savefig('Results/graph/Kline_origin/'+product+'_KLine.png', dpi=400)
-    # plt.show()
 
 products = ['AUDUSD','AIRBUS','GOOGLE','USD100M1','XAUUSD']
 
