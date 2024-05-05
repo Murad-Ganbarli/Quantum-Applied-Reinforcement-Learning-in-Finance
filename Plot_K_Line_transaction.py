@@ -7,13 +7,12 @@
 @function:Plot K line for each financial product with transaction indicators
 @time: 2021/5/15 21:25
 """
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from matplotlib import colors as mcolors
 from matplotlib.collections import LineCollection,PolyCollection
-
-
 
 def draw_transaction(product):
     import os
@@ -128,10 +127,3 @@ def draw_transaction(product):
     ax3.set_xlabel('Trade Days',color='#FF4500')
 
     plt.savefig('Results/graph/Kline_transaction/'+product+'_KLine.png',dpi=400)
-    # plt.show()
-
-### Test
-# products = ['USDJPY','AUDUSD','GOOGLE','USD100M1']
-#
-# for product in products:
-#     draw_transaction(product)
