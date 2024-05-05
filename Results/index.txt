@@ -1,30 +1,30 @@
-AUDUSD:
-The Total Profit is 849194.79 
-The Accumulative Return Rate is the last trade day is 8.49% 
-The Maximum Return Rate is  is 10.88% 
-The Minimum Return Rate is  is -4.14% 
-
-AIRBUS:
-The Total Profit is 8134663.17 
-The Accumulative Return Rate is the last trade day is 81.35% 
-The Maximum Return Rate is  is 88.12% 
-The Minimum Return Rate is  is -0.95% 
-
 GOOGLE:
-The Total Profit is 13940766.25 
-The Accumulative Return Rate is the last trade day is 139.41% 
-The Maximum Return Rate is  is 151.98% 
-The Minimum Return Rate is  is -0.10% 
-
-USD100M1:
-The Total Profit is 10345672.05 
-The Accumulative Return Rate is the last trade day is 103.46% 
-The Maximum Return Rate is  is 115.87% 
-The Minimum Return Rate is  is -1.61% 
+The Total Profit is 2614681.43 
+The Accumulative Return Rate is the last trade day is 26.15% 
+The Maximum Return Rate is  is 31.29% 
+The Minimum Return Rate is  is -4.32% 
 
 XAUUSD:
-The Total Profit is 3116457.21 
-The Accumulative Return Rate is the last trade day is 31.16% 
-The Maximum Return Rate is  is 37.28% 
-The Minimum Return Rate is  is -5.42% 
+The Total Profit is 370137.53 
+The Accumulative Return Rate is the last trade day is 3.70% 
+The Maximum Return Rate is  is 16.39% 
+The Minimum Return Rate is  is -4.66% 
+
+M E-mini S&P 500:
+The Total Profit is 500061.04 
+The Accumulative Return Rate is the last trade day is 5.00% 
+The Maximum Return Rate is  is 5.80% 
+The Minimum Return Rate is  is -8.42% 
+
+BOEING:
+The Total Profit is -1563854.83 
+The Accumulative Return Rate is the last trade day is -15.64% 
+The Maximum Return Rate is  is 3.44% 
+The Minimum Return Rate is  is -16.57% 
+
+AUDUSD:
+The Total Profit is -346168.14 
+The Accumulative Return Rate is the last trade day is -3.46% 
+The Maximum Return Rate is  is -0.10% 
+The Minimum Return Rate is  is -10.37% 
 
