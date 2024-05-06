@@ -6,7 +6,7 @@ class Preprocessor():
 
     def add_pct_change(self):
         # Calculate daily percentage change in closing price
-        self.input_data['DAILY_PCT_CHANGE'] = pd.Series(self.input_data['CLOSE']).pct_change()
+        self.input_data['PCT_CHANGE'] = pd.Series(self.input_data['CLOSE']).pct_change()
         # Fill NaN values (first row of pct_change) with zero
         self.input_data = self.input_data.fillna(0)
 
